@@ -1,20 +1,32 @@
 #!/usr/bin/env python
 import sys
+import re
 from sklearn.feature_extraction import stop_words
+import nltk
+from nltk.corpus import stopwords
+import spacy
+from spacy.lang.en.stop_words import STOP_WORDS
 
 
-stops = set(stop_words.ENGLISH_STOP_WORDS)
+# get sklearn, nltk and spacy stopwords & combine them in one list
+# covert to dictionary and back to list to remove any duplicates
+stops_spacy = list(STOP_WORDS)
+stops_sklearn = stop_words.ENGLISH_STOP_WORDS
+stops_nltk = stopwords.words('english')
+stops = stops_nltk + list(stops_sklearn) + stops_spacy
+
+#remove duplicates, convert back to a set
+stops = set(list( dict.fromkeys(stops)))
 
 
 # get all lines from stdin
 for line in sys.stdin:
 
     # remove punctuation using regular expressions
-   # line = re.sub(r'[^\w\s]','',s)
+    line = re.sub(r'[^\w\s]','',s)
 
-    # remove leading and trailing whitespace
+    # remove leading and trailing whitespace, convert to lowercase
     line = line.strip().lower()
-
 
     # split the line into words; splits on any whitespace
     words = line.split()
