@@ -1,23 +1,23 @@
 #!/usr/bin/env python
 import sys
 import re
-from sklearn.feature_extraction import stop_words
-import nltk
-from nltk.corpus import stopwords
-import spacy
-from spacy.lang.en.stop_words import STOP_WORDS
+#from sklearn.feature_extraction import stop_words
+#import nltk
+#from nltk.corpus import stopwords
+#import spacy
+#from spacy.lang.en.stop_words import STOP_WORDS
 
 
 # get sklearn, nltk and spacy stopwords & combine them in one list
 # covert to dictionary and back to list to remove any duplicates
-stops_spacy = list(STOP_WORDS)
-stops_sklearn = list(stop_words.ENGLISH_STOP_WORDS)
-stops_nltk = list(stopwords.words('english'))
-stops = stops_nltk + stops_sklearn + stops_spacy
+#stops_spacy = list(STOP_WORDS)
+#stops_sklearn = list(stop_words.ENGLISH_STOP_WORDS)
+#stops_nltk = list(stopwords.words('english'))
+#stops = stops_nltk + stops_sklearn + stops_spacy
 
 #remove duplicates, convert back to a set
-stops = set(list( dict.fromkeys(stops)))
-
+#stops = set(list( dict.fromkeys(stops)))
+stops = set(["the","are","there","their","a","i","and"])
 
 # get all lines from stdin
 for line in sys.stdin:
